@@ -1,0 +1,65 @@
+#################################
+# OS / Editor
+#################################
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+#################################
+# ENV / Secrets
+#################################
+.env
+.env.*
+*.key
+
+#################################
+# Logs
+#################################
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+uvicorn.log
+
+#################################
+# Node.js
+#################################
+node_modules/
+dist/
+build/
+coverage/
+.npmrc
+
+#################################
+# Python / FastAPI
+#################################
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+
+#################################
+# FastAPI / ML
+#################################
+model/
+models/
+*.pkl
+*.joblib
+
+#################################
+# Temporary / Runtime
+#################################
+tmp/
+temp/
+.cache/
