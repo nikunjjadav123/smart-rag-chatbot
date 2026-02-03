@@ -14,13 +14,13 @@ st.title("📄 Document Intelligence Assistant")
 st.caption("Ask questions and get accurate answers grounded in your uploaded documents")
 
 # Sidebar
-st.sidebar.title("Admin")
+# st.sidebar.title("Admin")
 
-if st.sidebar.button("🔁 Rebuild Knowledge Index"):
-    with st.spinner("Rebuilding vector index..."):
-        rebuild_index()
-        load_retriever.clear()
-    st.sidebar.success("Index rebuilt successfully")
+# if st.sidebar.button("🔁 Rebuild Knowledge Index"):
+#     with st.spinner("Rebuilding vector index..."):
+#         rebuild_index()
+#         load_retriever.clear()
+#     st.sidebar.success("Index rebuilt successfully")
 
 # Load core components
 retriever = load_retriever()

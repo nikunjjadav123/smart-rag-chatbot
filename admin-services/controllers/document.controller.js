@@ -18,22 +18,22 @@ exports.uploadDocument = (req, res) => {
     });
 };
 
-// exports.approveDocument = async (req, res) => {
-//     const docId = parseInt(req.params.id);
-//     const doc = documents.find(d => d.id === docId);
+exports.approveDocument = async (req, res) => {
+    const docId = parseInt(req.params.id);
+    const doc = documents.find(d => d.id === docId);
 
-//     if (!doc) {
-//         return res.status(404).json({ message: "Document not found" });
-//     }
+    if (!doc) {
+        return res.status(404).json({ message: "Document not found" });
+    }
 
-//     doc.status = "approved";
+    doc.status = "approved";
 
-//     await axios.post(`${process.env.PYTHON_RAG_SERVICE}/embed`, {
-//         file_path: doc.path
-//     });
+    await axios.post(`${process.env.PYTHON_RAG_SERVICE}/embed`, {
+        file_path: doc.path
+    });
 
-//     res.json({
-//         message: "Document approved & sent for embedding",
-//         document: doc
-//     });
-// };
+    res.json({
+        message: "Document approved & sent for embedding",
+        document: doc
+    });
+};
