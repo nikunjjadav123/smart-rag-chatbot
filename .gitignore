@@ -63,3 +63,4 @@ models/
 tmp/
 temp/
 .cache/
+chroma_db_hf/
