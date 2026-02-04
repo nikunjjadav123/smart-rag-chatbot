@@ -28,12 +28,15 @@ exports.approveDocument = async (req, res) => {
 
     doc.status = "approved";
 
-    await axios.post(`${process.env.PYTHON_RAG_SERVICE}/embed`, {
-        file_path: doc.path
-    });
+    // 🔥 Trigger rebuild (do NOT await result processing)
+    axios.post(`http://localhost:${process.env.PYTHON_PORT}/rebuild-index`)
+        .catch(err => {
+            console.error("Background rebuild failed:", err.message);
+        });
 
+    // ✅ Respond immediately
     res.json({
-        message: "Document approved & sent for embedding",
+        message: "Document approved. RAG rebuild started in background.",
         document: doc
     });
 };

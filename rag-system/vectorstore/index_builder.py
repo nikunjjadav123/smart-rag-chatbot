@@ -6,6 +6,7 @@ from langchain_community.vectorstores import Chroma
 from config.settings import PDF_DIR, CHROMA_DIR
 from embeddings.hf_embeddings import load_embeddings
 
+
 def rebuild_index():
     if not os.path.exists(PDF_DIR):
         raise FileNotFoundError(f"PDF directory not found: {PDF_DIR}")

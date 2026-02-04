@@ -1,6 +1,10 @@
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    )
+)
 
 PDF_DIR = os.path.join(BASE_DIR, "uploads", "documents")
 CHROMA_DIR = os.path.join(BASE_DIR, "chroma_db_hf")

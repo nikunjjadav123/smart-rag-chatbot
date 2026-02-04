@@ -4,16 +4,14 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-const { uploadDocument } = require("../controllers/document.controller");
+const { uploadDocument, approveDocument } = require("../controllers/document.controller");
 
 const UPLOAD_DIR = path.join(__dirname, "../../uploads/documents");
 
-/* 🔹 Ensure upload directory exists */
 if (!fs.existsSync(UPLOAD_DIR)) {
     fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 }
 
-/* 🔹 Multer storage */
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, UPLOAD_DIR);
@@ -23,7 +21,6 @@ const storage = multer.diskStorage({
     },
 });
 
-/* 🔹 File filter (PDF only) */
 const fileFilter = (req, file, cb) => {
     if (file.mimetype === "application/pdf") {
         cb(null, true);
@@ -42,5 +39,8 @@ router.post("/upload", (req, res, next) => {
     console.log("Headers:", req.headers["content-type"]);
     next();
 }, upload.single("file"), uploadDocument);
+
+router.post("/approve/:id", approveDocument);
+
 
 module.exports = router;
