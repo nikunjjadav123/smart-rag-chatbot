@@ -40,7 +40,6 @@ router.post("/upload", (req, res, next) => {
     next();
 }, upload.single("file"), uploadDocument);
 
-router.post("/approve/:id", approveDocument);
 
 
 module.exports = router;
