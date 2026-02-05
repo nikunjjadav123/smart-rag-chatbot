@@ -64,3 +64,4 @@ tmp/
 temp/
 .cache/
 chroma_db_hf/
+chroma_db_new/
