@@ -38,9 +38,13 @@ if submit:
     if not question.strip():
         st.warning("Please enter a question.")
     else:
-        with st.spinner("Thinking..."):
-            result = ask_question(question, retriever, llm)
-            st.session_state.qa_history.append((question, result))
+        # Prevent duplicate questions
+        if any(q == question for q, _ in st.session_state.qa_history):
+            st.warning("This question was already answered.")
+        else:
+            with st.spinner("Thinking..."):
+                result = ask_question(question, retriever, llm)
+                st.session_state.qa_history.append((question, result))
 
 # --------------------------------------------------
 # Display Latest Answer
@@ -54,3 +58,34 @@ if st.session_state.qa_history:
     if last_result.get("pages"):
         pages = ", ".join(f"Page {p}" for p in last_result["pages"])
         st.markdown(f"📄 **Source:** {pages}")
+
+# --------------------------------------------------
+# Sidebar Admin Panel
+# --------------------------------------------------
+# st.sidebar.title("🛠️ Admin Panel")
+
+# with st.sidebar:
+#     st.subheader("Index Management")
+
+#     if st.button("🔄 Reload Vector Index"):
+#         with st.spinner("Reloading vector index..."):
+#             rebuild_index()
+#             st.success("Vector index reloaded successfully!")
+
+#     st.divider()
+
+#     if st.button("🧹 Clear Chat History"):
+#         st.session_state.qa_history = []
+#         st.success("Chat history cleared!")
+
+#     st.divider()
+
+#     st.subheader("System Info")
+#     st.markdown("""
+#     **Vector DB:** Chroma  
+#     **Embedding Model:** all-MiniLM-L6-v2  
+#     **LLM:** TinyLlama (Hugging Face)  
+#     """)
+
+#     st.divider()
+#     st.caption("Admin-only controls")

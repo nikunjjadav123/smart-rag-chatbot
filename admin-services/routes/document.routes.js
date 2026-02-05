@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-const { uploadDocument, approveDocument } = require("../controllers/document.controller");
+const { uploadDocument } = require("../controllers/document.controller");
 
 const UPLOAD_DIR = path.join(__dirname, "../../uploads/documents");
 
